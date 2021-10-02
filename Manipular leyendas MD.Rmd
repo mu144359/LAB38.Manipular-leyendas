@@ -1,0 +1,80 @@
+---
+title: "Manipular leyendas"
+author: "Selene Muñoz"
+date: "2/10/2021"
+output: html_document
+---
+
+Instalar paquerías
+
+install.packages("gapminder")
+
+install.packages("ggplot2")
+
+
+Cargar librería ggplot2 y gapminder
+```{r}
+library(ggplot2)
+library(gapminder)
+```
+
+Cargando datos a entorno
+```{r}
+data("gapminder")
+```
+
+Filtrando por año 2007
+```{r}
+gapminder2007 <- gapminder[gapminder$year == '2007', ]
+```
+
+Colocando texto base
+```{r}
+p <- ggplot(data = gapminder2007,
+       mapping = aes(x= gdpPercap,
+                     y=lifeExp,
+                     color= continent))+
+  geom_point()
+```
+
+Mostrar la gráfica
+```{r}
+p
+```
+
+Quitar título de la leyenda
+```{r}
+p + theme(legend.title = element_blank())
+```
+
+Quitar toda la leyenda
+```{r}
+p + theme(legend.position = "none")
+```
+
+Cambiar la leyenda de posición
+
+Top
+```{r}
+p + theme(legend.position = "top")
+```
+
+Right
+```{r}
+p + theme(legend.position = "right")
+```
+
+Left
+```{r}
+p + theme(legend.position = "left")
+```
+
+Bottom
+```{r}
+p + theme(legend.position = "bottom")
+```
+
+Cambiar con coordenadas de 0 a 1
+```{r}
+p + theme(legend.position = c(0.8,0.4))
+```
